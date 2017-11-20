@@ -9,14 +9,14 @@ exports.assistantcodelab = functions.https.onRequest((request, response) =>
 {
 	const app = new Assist({request:request, response:response});
 	const actionMap = new Map();
-	actionMap.set('input.welcome', welcomeIntent);
-	actionMap.set('input.add', caculateAdd);
-	actionMap.set('input.subtract', caculateSub);
-	actionMap.set('input.lighton', lighton);
-	actionMap.set('input.lightoff', lightoff);
-	actionMap.set('input.fanon', fanon);
-	actionMap.set('input.fanoff', fanoff);
-	actionMap.set('input.ssml', ssml);
+	// actionMap.set('input.welcome', welcomeIntent);
+	// actionMap.set('input.add', caculateAdd);
+	// actionMap.set('input.subtract', caculateSub);
+	// actionMap.set('input.lighton', lighton);
+	// actionMap.set('input.lightoff', lightoff);
+	// actionMap.set('input.fanon', fanon);
+	// actionMap.set('input.fanoff', fanoff);
+	// actionMap.set('input.ssml', ssml);
 	actionMap.set('input.rich', rich);
 	app.handleRequest(actionMap);
 
@@ -110,6 +110,7 @@ exports.assistantcodelab = functions.https.onRequest((request, response) =>
 	}
 	function rich(app) 
 	{
+		
 		app.tell(app.buildRichResponse()
 			.addSimpleResponse('this is the simple response')
 		.addBasicCard(app.buildBasicCard("Building rich response is easy way and increase user's satisfaction"))
