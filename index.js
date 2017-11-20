@@ -9,14 +9,14 @@ exports.assistantcodelab = functions.https.onRequest((request, response) =>
 {
 	const app = new Assist({request:request, response:response});
 	const actionMap = new Map();
-	// actionMap.set('input.welcome', welcomeIntent);
-	// actionMap.set('input.add', caculateAdd);
-	// actionMap.set('input.subtract', caculateSub);
-	// actionMap.set('input.lighton', lighton);
-	// actionMap.set('input.lightoff', lightoff);
-	// actionMap.set('input.fanon', fanon);
-	// actionMap.set('input.fanoff', fanoff);
-	// actionMap.set('input.ssml', ssml);
+	actionMap.set('input.welcome', welcomeIntent);
+	actionMap.set('input.add', caculateAdd);
+	actionMap.set('input.subtract', caculateSub);
+	actionMap.set('input.lighton', lighton);
+	actionMap.set('input.lightoff', lightoff);
+	actionMap.set('input.fanon', fanon);
+	actionMap.set('input.fanoff', fanoff);
+	actionMap.set('input.ssml', ssml);
 	actionMap.set('input.rich', rich);
 	app.handleRequest(actionMap);
 
@@ -26,12 +26,19 @@ exports.assistantcodelab = functions.https.onRequest((request, response) =>
 	}
 	function caculateAdd(app)
 	{
-		var n1 = app.getArgument('numberOne');
-		var n2 = app.getArgument('numberTwo');
-		var num1 = parseInt(n1, 10);
-		var num2 = parseInt(n2, 10);
-		var result = num1 + num2;
-		app.tell('The sum of two numbers is ' + result);
+// 		var n1 = app.getArgument('numberOne');
+// 		var n2 = app.getArgument('numberTwo');
+// 		var num1 = parseInt(n1, 10);
+// 		var num2 = parseInt(n2, 10);
+// 		var result = num1 + num2;
+// 		app.tell('The sum of two numbers is ' + result);
+		
+		app.tell(app.buildRichResponse()
+			.addSimpleResponse('this is the simple response')
+		.addBasicCard(app.buildBasicCard("Building rich response is easy way and increase user's satisfaction"))
+			.setTitle('this is the title')
+			.addButton('read more', 'http://google.com')
+			.setImage('https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwiQxJuMqq7XAhUQ9WMKHe8OCVAQjRwIBw&url=https%3A%2F%2Fwww.almanac.com%2Fcontent%2Fbirth-month-flowers-and-their-meanings&psig=AOvVaw20Jx4Te9_ISJq_haE0htwc&ust=1510208194926103'
 	}
 	function caculateSub(app)
 	{
